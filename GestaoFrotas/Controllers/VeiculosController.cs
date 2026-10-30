@@ -15,5 +15,23 @@ public class VeiculosController : Controller
     public IActionResult Index()
     {
         return View(_veiculos);
+    }    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(Veiculo veiculo)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(veiculo);
+        }
+
+        veiculo.Id = _veiculos.Count == 0 ? 1 : _veiculos.Max(v => v.Id) + 1;
+        _veiculos.Add(veiculo);
+
+        return RedirectToAction(nameof(Index));
     }
 }
