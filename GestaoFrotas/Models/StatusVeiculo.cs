@@ -3,5 +3,5 @@ public enum StatusVeiculo
 {
     Ativo,
     Inativo,
-    Manutencao
+    EmManutencao
 }
